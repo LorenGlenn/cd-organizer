@@ -1,4 +1,9 @@
 <h1>Here are your Artist's!</h1>
+<form action="/searchArtist" method="post">
+  <label for="searchName">Enter an artist's name:</label>
+  <input type="text" name="searchName" id="searchName">
+  <button type="submit">Search</button>
+</form>
 <ul>
   @foreach (var artist in Model)
   {

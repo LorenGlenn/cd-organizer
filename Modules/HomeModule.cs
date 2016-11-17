@@ -46,7 +46,8 @@ namespace Organizer
         model.Add("Cds", artistCds);
         return View["cd-new-form.cshtml", model];
       };
-      Post["/cds"] = _ => {
+      Post["/cds"] = _ =>
+      {
         Dictionary<string, object> model = new Dictionary<string, object>();
         var selectedArtist = Artist.Find(Request.Form["artist-id"]);
         List<Cd> artistCds = selectedArtist.GetCds();
@@ -55,6 +56,13 @@ namespace Organizer
         model.Add("Cds", artistCds);
         model.Add("artist", selectedArtist);
         return View["view-artist.cshtml", model];
+      };
+
+      Post["/searchArtist"] = _ =>
+      {
+        var searchInput = Request.Form["searchName"];
+        List<Artist> matchedArtists = Artist.FilterArtist(searchInput);
+        return View["view-all-artist.cshtml", matchedArtists];
       };
     }
   }
